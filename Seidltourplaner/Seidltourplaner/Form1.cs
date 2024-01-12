@@ -21,6 +21,8 @@ namespace Seidltourplaner
     public partial class Form1 : Form
     {
         List<Vertex> allVertices = new List<Vertex>();
+        GMapOverlay markers = new GMapOverlay("markers");
+        Calculate calculateRoute = new Calculate();
 
         public Form1()
         {
@@ -59,7 +61,6 @@ namespace Seidltourplaner
 
             // Visualisierung aktualisieren
             GMapMarker gMapMarkers;
-            GMapOverlay markers = new GMapOverlay("markers");
             foreach (var item in allVertices)
             {
                 ClbStations.Items.Add(item.m_name);
@@ -76,28 +77,41 @@ namespace Seidltourplaner
             if (CbStart.Text != "" && numberCheckedIndices > 1)
             {
                 // Liste mit angehackten Knoten erzeugen und Startknoten bestimmen
-                List<Vertex> checkedVertices = new List<Vertex>();
-                int indexStartVertex = 0;
+                List<int> indexCheckedVertices = new List<int>();
+                int indexStartVertex = -1;
                 for (int i = 0; i < numberCheckedIndices; i++)
                 {
-                    checkedVertices.Add(allVertices[ClbStations.CheckedIndices[i]]);
+                    indexCheckedVertices.Add(ClbStations.CheckedIndices[i]);
                     if (ClbStations.CheckedItems[i].ToString() == CbStart.Text)
                     {
                         indexStartVertex = i;
                     }
-
+                }
+                if(indexStartVertex == -1)
+                {
+                    DialogResult result = MessageBox.Show(
+                        "Der Startpunkt muss auch in den zu besuchenden Stationen liegen!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
                 Vertex startVertex = allVertices[indexStartVertex];
 
-                // only for testing
-                for (int i = 0; i < numberCheckedIndices-1; i++)
+                int distance = 0;
+                if(!Calculate.CalculateRoute(ref allVertices, indexCheckedVertices, ref startVertex, out distance))
                 {
-                    checkedVertices[i].m_nextVertex = checkedVertices[i+1];
+                    // show message box
+                    DialogResult result = MessageBox.Show(
+                        "Berechnung fehlgeschlagen!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
+                LblDistance.Text = distance.ToString() + " m";
 
-                // Routen in der Visualisierung einzeichnen
+                // Routen und Marker in der Visualisierung löschen
+                map.Overlays.Clear();
+                map.Overlays.Add(markers);
+
+                // Routen in die Visualisierung einzeichnen
                 var routes = new GMapOverlay("routes");
-                Vertex actualVertex = checkedVertices[0]; // Später auf "startVertex"
+                Vertex actualVertex = startVertex;
                 for (int i = 0; i < numberCheckedIndices-1; i++)
                 {
                     var calculatedRoute = BingMapProvider.Instance.GetRoute(actualVertex.m_coordinates, actualVertex.m_nextVertex.m_coordinates, true, true, 15);
@@ -113,7 +127,7 @@ namespace Seidltourplaner
             {
                 // show message box
                 DialogResult result = MessageBox.Show(
-                    "Zu besuchende Stationen und Startpunk auswählen!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    "Zu besuchende Stationen und Startpunkt auswählen!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

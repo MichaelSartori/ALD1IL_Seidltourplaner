@@ -11,13 +11,20 @@ namespace Seidltourplaner
     {
         public PointLatLng m_coordinates { get; private set; }
         public string m_name { get; private set; }
-        public List<Vertex> m_vertices;
-        public Vertex m_nextVertex;
+        public List<Tuple<Vertex,int>> m_neighborVertices { get; set; }
+
+        public Vertex m_nextVertex { get; set; }
 
         public Vertex(double latitude, double longitude, string name)
         {
             m_coordinates = new PointLatLng(latitude, longitude);
             m_name = name;
+            m_neighborVertices = new List<Tuple<Vertex,int>>();
+        }
+
+        public void AddNeighborVertix(Vertex m_neighborVertic, int distance)
+        {
+            m_neighborVertices.Add(new Tuple<Vertex,int>(m_neighborVertic, distance));
         }
     }
 }

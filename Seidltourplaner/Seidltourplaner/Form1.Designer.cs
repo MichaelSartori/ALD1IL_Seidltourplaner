@@ -34,6 +34,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.CbStart = new System.Windows.Forms.ComboBox();
             this.map = new GMap.NET.WindowsForms.GMapControl();
+            this.label3 = new System.Windows.Forms.Label();
+            this.LblDistance = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BtnCalculateRoute
@@ -69,7 +71,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(634, 286);
+            this.label2.Location = new System.Drawing.Point(634, 274);
             this.label2.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 13);
@@ -79,7 +81,7 @@
             // CbStart
             // 
             this.CbStart.FormattingEnabled = true;
-            this.CbStart.Location = new System.Drawing.Point(636, 300);
+            this.CbStart.Location = new System.Drawing.Point(636, 288);
             this.CbStart.Margin = new System.Windows.Forms.Padding(1);
             this.CbStart.Name = "CbStart";
             this.CbStart.Size = new System.Drawing.Size(141, 21);
@@ -113,11 +115,33 @@
             this.map.TabIndex = 6;
             this.map.Zoom = 0D;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(634, 332);
+            this.label3.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(115, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Weg für alle Stationen:";
+            // 
+            // LblDistance
+            // 
+            this.LblDistance.AutoSize = true;
+            this.LblDistance.Location = new System.Drawing.Point(751, 332);
+            this.LblDistance.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.LblDistance.Name = "LblDistance";
+            this.LblDistance.Size = new System.Drawing.Size(42, 13);
+            this.LblDistance.TabIndex = 8;
+            this.LblDistance.Text = "/";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(801, 478);
+            this.Controls.Add(this.LblDistance);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.map);
             this.Controls.Add(this.CbStart);
             this.Controls.Add(this.label2);
@@ -141,6 +165,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox CbStart;
         private GMap.NET.WindowsForms.GMapControl map;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label LblDistance;
     }
 }
 
