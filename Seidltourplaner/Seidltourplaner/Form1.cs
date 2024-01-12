@@ -68,38 +68,6 @@ namespace Seidltourplaner
             }
             map.Overlays.Add(markers);
             map.ZoomAndCenterMarkers("markers");
-
-
-            //PointLatLng point1 = new PointLatLng(47.80004719908009, 13.046236505471862); // Segabar
-            //PointLatLng point2 = new PointLatLng(47.80064507790365, 13.048103825465349); // Monkey
-            //PointLatLng point3 = new PointLatLng(47.798889396189196, 13.063847967838894); // Steinlechners
-
-            //GMapMarker marker1 = new GMarkerGoogle(point1, GMarkerGoogleType.red_dot);
-            //GMapOverlay markers = new GMapOverlay("markers");
-            //markers.Markers.Add(marker1);
-            //marker1 = new GMarkerGoogle(point2, GMarkerGoogleType.red_dot);
-            //markers.Markers.Add(marker1);
-            //marker1 = new GMarkerGoogle(point3, GMarkerGoogleType.red_dot);
-            //markers.Markers.Add(marker1);
-            //map.Overlays.Add(markers);
-
-
-            //var route1 = BingMapProvider.Instance.GetRoute(point1, point2, true, true, 15);
-            //var route2 = BingMapProvider.Instance.GetRoute(point2, point3, true, true, 15);
-            ////var route3 = GoogleMapProvider.Instance.GetRoute(point3, point4, false, true, 15);
-
-            //var r1 = new GMapRoute(route1.Points, "My Route1");
-            //var r2 = new GMapRoute(route2.Points, "My Route2");
-            ////var r3 = new GMapRoute(route3.Points, "My Route3");
-
-            //var routes = new GMapOverlay("routes");
-            //routes.Routes.Add(r1);
-            //routes.Routes.Add(r2);
-            ////routes.Routes.Add(r3);
-
-            //map.Overlays.Add(routes);
-            //map.Zoom = 14;
-            //map.Zoom = 15;
         }
 
         private void BtnCalculateRoute_Click(object sender, EventArgs e)
