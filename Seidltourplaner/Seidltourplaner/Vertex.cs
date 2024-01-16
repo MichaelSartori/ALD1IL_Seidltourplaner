@@ -22,7 +22,7 @@ namespace Seidltourplaner
             m_neighborVertices = new List<Tuple<Vertex,int>>();
         }
 
-        public void AddNeighborVertix(Vertex m_neighborVertic, int distance)
+        public void AddNeighborVertix(Vertex m_neighborVertic, int distance = 10)
         {
             m_neighborVertices.Add(new Tuple<Vertex,int>(m_neighborVertic, distance));
         }
