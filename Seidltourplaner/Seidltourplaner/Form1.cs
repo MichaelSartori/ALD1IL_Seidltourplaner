@@ -49,7 +49,18 @@ namespace Seidltourplaner
             Vertex monkeys = new Vertex(47.80064507790365, 13.048103825465349, "Monkey cafe.bar");
             Vertex segabar = new Vertex(47.80004719908009, 13.046236505471862, "Segabar");
             Vertex steinlechners = new Vertex(47.798889396189196, 13.063847967838894, "Steinlechners");
-
+            Vertex augustinerbraeu = new Vertex(47.80568, 13.03377, "Augustiner Bräu Kloster Mülln");
+            Vertex watzmann = new Vertex(47.80101, 13.04686, "Watzmann Cultbar");
+            Vertex partymaus = new Vertex(47.79197, 12.987, "Partymaus");
+            Vertex schnaitlpub = new Vertex(47.80299, 13.04572, "Schnaitl Pub");
+            Vertex rockhouse = new Vertex(47.80705, 13.05895, "Rockhouse Salzburg");
+            Vertex weisse = new Vertex(47.80689, 13.05172, "Die Weisse");
+            Vertex stiegelkeller = new Vertex(47.79645, 13.04801, "Stiegelkeller");
+            Vertex urbankeller = new Vertex(47.80722, 13.06083, "Urbankeller Salzburg");
+            Vertex cityalm = new Vertex(47.79979, 13.04678, "City Alm");
+            Vertex omalleys = new Vertex(47.80012, 13.04607, "O'Malley's Irish Pub");
+            Vertex flip = new Vertex(47.80114, 13.0389, "Flip");
+            Vertex stiegelbrauwelt = new Vertex(47.79368, 13.02143, "Stiegl-Brauwelt");
             // Kanten anlegen
             // ToDo
 
@@ -57,6 +68,18 @@ namespace Seidltourplaner
             allVertices.Add(monkeys);
             allVertices.Add(segabar);
             allVertices.Add(steinlechners);
+            allVertices.Add(augustinerbraeu);
+            allVertices.Add(watzmann);
+            allVertices.Add(partymaus);
+            allVertices.Add(schnaitlpub);
+            allVertices.Add(rockhouse);
+            allVertices.Add(weisse);
+            allVertices.Add(urbankeller);
+            allVertices.Add(stiegelkeller);
+            allVertices.Add(cityalm);
+            allVertices.Add(omalleys);
+            allVertices.Add(flip);
+            allVertices.Add(stiegelbrauwelt);
 
 
             // Visualisierung aktualisieren
