@@ -34,10 +34,6 @@ namespace Seidltourplaner
 
             m_indexCheckedVertices = new List<int>();
 
-            //// Initialisiere GMap
-            //GMaps.Instance.Mode = AccessMode.ServerAndCache;
-            //// Setze den Bing Maps API-Schlüssel
-            //GMapProviders.BingMap.ClientKey = @"odSs6iYRjBisqTjOZeMV~X1lRoeYyJRrDQH6--qI7Rg~ArJ6lPStApT--whZWgV8ZwCZet2uRtMPANBkvwzkT-mFHR4wsDOF6sg2fZUuMB8R";
         }
 
         /// <summary>
@@ -106,8 +102,5 @@ namespace Seidltourplaner
 
             _mainView.UpdateView(markers, routes, distance, error);
         }
-        // Listen-Index wird einer Funktion in dieser Klasse übergeben übergeben 
-
-        // return: Kilometer und geordnete Liste von Stationen wird zurückgegeben
     }
 }
