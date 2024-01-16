@@ -37,7 +37,7 @@ namespace Seidltourplaner.Model
 
 
             // Nachbarknoten
-            // monkeys
+            // Monkeys
             monkeys.AddNeighborVertix(segabar);
             monkeys.AddNeighborVertix(steinlechners);
             monkeys.AddNeighborVertix(watzmann);
@@ -45,7 +45,7 @@ namespace Seidltourplaner.Model
             monkeys.AddNeighborVertix(cityalm);
             monkeys.AddNeighborVertix(citybeats);
 
-            // segabar
+            // Segabar
             segabar.AddNeighborVertix(monkeys);
             segabar.AddNeighborVertix(watzmann);
 
@@ -115,7 +115,6 @@ namespace Seidltourplaner.Model
             omalleys.AddNeighborVertix(cityalm);
             omalleys.AddNeighborVertix(citybeats);
             omalleys.AddNeighborVertix(schnaitlpub);
-
 
             // Flip
             flip.AddNeighborVertix(augustinerbraeu);

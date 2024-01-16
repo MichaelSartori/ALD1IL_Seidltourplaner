@@ -121,5 +121,10 @@ namespace Seidltourplaner
                 ClbStations.Items.Add(item);
             }
         }
+
+        private void MainView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
