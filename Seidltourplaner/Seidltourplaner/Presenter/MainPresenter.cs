@@ -87,7 +87,7 @@ namespace Seidltourplaner
 
 
             /// only for testing // ToDo Markus
-            int distance = 1098;
+            int distance = 0;
             bool error = false;
 
             for (int i = 0; i < m_indexCheckedVertices.Count - 1; i++)
@@ -95,6 +95,7 @@ namespace Seidltourplaner
                 Vertex actualVertex = _model.m_allVertices[m_indexCheckedVertices[i]];
                 MapRoute calculatedRoute = actualVertex.m_neighborVertices[1].Item2;
                 var GMapRoute = new GMapRoute(calculatedRoute.Points, i.ToString());
+                distance = distance + Convert.ToInt32(calculatedRoute.Distance * 1000);
                 routes.Routes.Add(GMapRoute);
             }
             /// End - only for testing
