@@ -1,0 +1,33 @@
+DijkstraAlgorithm(Graph, Startknoten, Zielpunkte):
+    distances = Dictionary von Knoten zu Distanzen (initial auf unendlich gesetzt)
+    previous = Dictionary von Knoten zu Vorgängern (initial auf null gesetzt)
+    priorityQueue = Min-Heap-Prioritätswarteschlange
+
+    distances[Startknoten] = 0
+    priorityQueue.Enqueue(Startknoten, 0)
+
+    while priorityQueue nicht leer:
+        aktuellerKnoten = priorityQueue.Dequeue()
+
+        falls aktuellerKnoten ist im Graphen enthalten:
+            für jeden Nachbarn des aktuellenKnotens:
+                alt = distances[aktuellerKnoten] + Gewicht der Kante von aktuellerKnoten zu Nachbar
+
+                falls alt < distances[Nachbar]:
+                    distances[Nachbar] = alt
+                    previous[Nachbar] = aktuellerKnoten
+                    priorityQueue.Enqueue(Nachbar, alt)
+
+    kürzestePfade = Liste von Pfaden zu den Zielpunkten
+
+    für jeden Zielpunkt in Zielpunkte:
+        Pfad = Liste von Knoten
+        aktuellerKnoten = Zielpunkt
+
+        solange aktuellerKnoten ist nicht null:
+            Pfad.VorneHinzufügen(aktuellerKnoten)
+            aktuellerKnoten = previous[aktuellerKnoten]
+
+        kürzestePfade.Hinzufügen(Pfad.Rückwärts())
+
+    return kürzestePfade
