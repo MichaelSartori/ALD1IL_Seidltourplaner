@@ -43,7 +43,7 @@
             // 
             // BtnCalculateRoute
             // 
-            this.BtnCalculateRoute.Location = new System.Drawing.Point(658, 322);
+            this.BtnCalculateRoute.Location = new System.Drawing.Point(658, 328);
             this.BtnCalculateRoute.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.BtnCalculateRoute.Name = "BtnCalculateRoute";
             this.BtnCalculateRoute.Size = new System.Drawing.Size(202, 47);
@@ -58,7 +58,7 @@
             this.ClbStations.Location = new System.Drawing.Point(658, 26);
             this.ClbStations.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.ClbStations.Name = "ClbStations";
-            this.ClbStations.Size = new System.Drawing.Size(204, 229);
+            this.ClbStations.Size = new System.Drawing.Size(204, 244);
             this.ClbStations.TabIndex = 1;
             // 
             // label1
@@ -74,7 +74,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(656, 275);
+            this.label2.Location = new System.Drawing.Point(656, 281);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 13);
@@ -84,7 +84,7 @@
             // CbStart
             // 
             this.CbStart.FormattingEnabled = true;
-            this.CbStart.Location = new System.Drawing.Point(658, 289);
+            this.CbStart.Location = new System.Drawing.Point(658, 295);
             this.CbStart.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.CbStart.Name = "CbStart";
             this.CbStart.Size = new System.Drawing.Size(204, 21);
@@ -121,7 +121,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(656, 538);
+            this.label3.Location = new System.Drawing.Point(656, 546);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(115, 13);
@@ -131,7 +131,7 @@
             // LblDistance
             // 
             this.LblDistance.AutoSize = true;
-            this.LblDistance.Location = new System.Drawing.Point(773, 538);
+            this.LblDistance.Location = new System.Drawing.Point(773, 546);
             this.LblDistance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblDistance.Name = "LblDistance";
             this.LblDistance.Size = new System.Drawing.Size(12, 13);
@@ -149,7 +149,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(656, 395);
+            this.label5.Location = new System.Drawing.Point(656, 403);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 13);
@@ -159,7 +159,7 @@
             // LB_StationsSequence
             // 
             this.LB_StationsSequence.FormattingEnabled = true;
-            this.LB_StationsSequence.Location = new System.Drawing.Point(658, 410);
+            this.LB_StationsSequence.Location = new System.Drawing.Point(658, 418);
             this.LB_StationsSequence.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.LB_StationsSequence.Name = "LB_StationsSequence";
             this.LB_StationsSequence.Size = new System.Drawing.Size(204, 121);
