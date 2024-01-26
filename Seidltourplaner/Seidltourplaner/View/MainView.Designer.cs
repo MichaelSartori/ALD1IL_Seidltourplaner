@@ -160,7 +160,7 @@
             // 
             this.LB_StationsSequence.FormattingEnabled = true;
             this.LB_StationsSequence.Location = new System.Drawing.Point(658, 418);
-            this.LB_StationsSequence.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.LB_StationsSequence.Margin = new System.Windows.Forms.Padding(1);
             this.LB_StationsSequence.Name = "LB_StationsSequence";
             this.LB_StationsSequence.Size = new System.Drawing.Size(204, 121);
             this.LB_StationsSequence.TabIndex = 11;

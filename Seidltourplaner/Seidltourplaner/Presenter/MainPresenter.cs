@@ -5,6 +5,7 @@ using GMap.NET.WindowsForms.Markers;
 using Seidltourplaner.Model;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,12 +46,13 @@ namespace Seidltourplaner
             List<string> clbStations = new List<string>();
 
             // Visualisierung aktualisieren
-            GMapMarker gMapMarkers;
+            GMapMarker gMapMarker;
             foreach (var item in _model.m_allVertices)
             {
                 clbStations.Add(item.m_name);
-                gMapMarkers = new GMarkerGoogle(item.m_coordinates, GMarkerGoogleType.red_dot);
-                markers.Markers.Add(gMapMarkers);
+                gMapMarker = new GMarkerGoogle(item.m_coordinates, GMarkerGoogleType.red_dot);
+                gMapMarker.ToolTipText = item.m_name;
+                markers.Markers.Add(gMapMarker);
             }
 
             _mainView.Show();
