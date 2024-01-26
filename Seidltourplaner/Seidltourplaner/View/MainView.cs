@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using static GMap.NET.Entity.OpenStreetMapRouteEntity;
 using GMapMarker = GMap.NET.WindowsForms.GMapMarker;
 using GMapRoute = GMap.NET.WindowsForms.GMapRoute;
@@ -73,6 +74,8 @@ namespace Seidltourplaner
                 CheckedStationsChanged(this, indexCheckedVertices);
                 StartStationChanged(this, indexStartVertex);
                 OnCalculateRouteRequested(this, e);
+                // Aktivieren des Drop-Down der Weg-Ziel Ausgabe
+                cbWegZiel.Enabled = true;
             }
             else
             {
@@ -91,7 +94,7 @@ namespace Seidltourplaner
             }
         }
 
-        internal void UpdateView(GMapOverlay markers, GMapOverlay routes, int distance, bool error)
+        internal void UpdateView(GMapOverlay markers, GMapOverlay routes, int distance, List<string> path, bool error)
         {
             if (error)
             {
@@ -110,6 +113,8 @@ namespace Seidltourplaner
 
             map.Overlays.Add(routes);
             map.ZoomAndCenterRoutes("routes");
+
+            UpdatePathTarget(path);
         }
 
         internal void InitView(GMapOverlay markers, List<string>allStations)
@@ -127,6 +132,14 @@ namespace Seidltourplaner
             Application.Exit();
         }
 
-       
+        private void UpdatePathTarget(List<string> stationsToUpdate)
+        {
+            int i = 1;
+            foreach (var station in stationsToUpdate)
+            {
+                cbWegZiel.Items.Add(i.ToString() + ". " + station);
+                i++;
+            }
+        }
     }
 }

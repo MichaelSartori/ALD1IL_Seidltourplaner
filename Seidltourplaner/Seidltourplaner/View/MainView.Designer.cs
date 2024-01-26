@@ -38,7 +38,7 @@
             this.LblDistance = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbWegZiel = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -153,14 +153,15 @@
             this.label4.Size = new System.Drawing.Size(100, 23);
             this.label4.TabIndex = 1;
             // 
-            // comboBox2
+            // cbWegZiel
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(849, 500);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(270, 24);
-            this.comboBox2.TabIndex = 10;
+            this.cbWegZiel.Enabled = false;
+            this.cbWegZiel.FormattingEnabled = true;
+            this.cbWegZiel.Location = new System.Drawing.Point(849, 500);
+            this.cbWegZiel.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.cbWegZiel.Name = "cbWegZiel";
+            this.cbWegZiel.Size = new System.Drawing.Size(270, 24);
+            this.cbWegZiel.TabIndex = 10;
             // 
             // label5
             // 
@@ -168,16 +169,16 @@
             this.label5.Location = new System.Drawing.Point(847, 483);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 16);
+            this.label5.Size = new System.Drawing.Size(91, 16);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Startpunkt:";
+            this.label5.Text = "Weg zum Ziel;";
             // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1168, 610);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cbWegZiel);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label4);
@@ -211,7 +212,7 @@
         private System.Windows.Forms.Label LblDistance;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbWegZiel;
         private System.Windows.Forms.Label label5;
     }
 }

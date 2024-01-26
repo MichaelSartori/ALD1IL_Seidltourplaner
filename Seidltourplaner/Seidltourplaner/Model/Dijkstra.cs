@@ -24,6 +24,8 @@ namespace Seidltourplaner.Model
             //m_indexCheckedVertices = indexCheckedVertices;
         }
 
+        public event EventHandler<List<int>> UpdatePathTarget;
+
         public List<Vertex> calculateNearestNode(Vertex startNode, List<int> indicesOfClickedNodes)
         {
             // Instanzieren 

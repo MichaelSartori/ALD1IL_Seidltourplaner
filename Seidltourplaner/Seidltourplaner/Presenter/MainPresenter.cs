@@ -68,6 +68,9 @@ namespace Seidltourplaner
             _mainView.CheckedStationsChanged += ChangeCheckedStations;
             _mainView.StartStationChanged += ChangeStartStation;
 
+            ////von Markus
+            //_mainView.UpdatePathTarget += UpdatePathTarget;
+
         }
 
         private void ChangeStartStation(object sender, int startStation)
@@ -107,8 +110,10 @@ namespace Seidltourplaner
 
             Dijkstra dijkstra = new Dijkstra(_model.m_allVertices);
             List<Vertex> path = null;
+            List<string> pathToTarget = new List<string>();
             // Erster Startknoten
             Vertex actualStartNode = _model.m_allVertices[m_indexStartStation];
+            pathToTarget.Add(actualStartNode.m_name);
             int j = 1;
 
             // Solange nicht alle gewünschten Knoten besucht wurden
@@ -135,12 +140,14 @@ namespace Seidltourplaner
                 
 
                 j++;
+                
                 clickedVertices.Remove(actualStartNode);
                 m_indicesCheckedVertices.Remove(_model.m_allVertices.IndexOf(actualStartNode));
                 actualStartNode = path[path.Count - 1];
+                pathToTarget.Add(actualStartNode.m_name);
             }      
 
-            _mainView.UpdateView(markers, routes, distance, error);
+            _mainView.UpdateView(markers, routes, distance, pathToTarget, error);
         }
     }
 }
