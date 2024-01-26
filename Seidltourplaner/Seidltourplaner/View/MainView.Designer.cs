@@ -36,18 +36,17 @@
             this.map = new GMap.NET.WindowsForms.GMapControl();
             this.label3 = new System.Windows.Forms.Label();
             this.LblDistance = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.cbWegZiel = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.LB_StationsSequence = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // BtnCalculateRoute
             // 
-            this.BtnCalculateRoute.Location = new System.Drawing.Point(849, 413);
-            this.BtnCalculateRoute.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.BtnCalculateRoute.Location = new System.Drawing.Point(1754, 768);
+            this.BtnCalculateRoute.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.BtnCalculateRoute.Name = "BtnCalculateRoute";
-            this.BtnCalculateRoute.Size = new System.Drawing.Size(270, 58);
+            this.BtnCalculateRoute.Size = new System.Drawing.Size(540, 112);
             this.BtnCalculateRoute.TabIndex = 0;
             this.BtnCalculateRoute.Text = "Route berechnen";
             this.BtnCalculateRoute.UseVisualStyleBackColor = true;
@@ -56,39 +55,39 @@
             // ClbStations
             // 
             this.ClbStations.FormattingEnabled = true;
-            this.ClbStations.Location = new System.Drawing.Point(849, 32);
-            this.ClbStations.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.ClbStations.Location = new System.Drawing.Point(1754, 62);
+            this.ClbStations.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.ClbStations.Name = "ClbStations";
-            this.ClbStations.Size = new System.Drawing.Size(270, 310);
+            this.ClbStations.Size = new System.Drawing.Size(536, 564);
             this.ClbStations.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(843, 15);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(1742, 29);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 16);
+            this.label1.Size = new System.Drawing.Size(290, 32);
             this.label1.TabIndex = 2;
             this.label1.Text = "Zu besuchende Pubs:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(847, 351);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(1750, 655);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 16);
+            this.label2.Size = new System.Drawing.Size(152, 32);
             this.label2.TabIndex = 3;
             this.label2.Text = "Startpunkt:";
             // 
             // CbStart
             // 
             this.CbStart.FormattingEnabled = true;
-            this.CbStart.Location = new System.Drawing.Point(849, 368);
-            this.CbStart.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.CbStart.Location = new System.Drawing.Point(1754, 688);
+            this.CbStart.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.CbStart.Name = "CbStart";
-            this.CbStart.Size = new System.Drawing.Size(270, 24);
+            this.CbStart.Size = new System.Drawing.Size(536, 39);
             this.CbStart.TabIndex = 5;
             this.CbStart.DropDown += new System.EventHandler(this.CbStart_DropDown);
             // 
@@ -100,8 +99,8 @@
             this.map.GrayScaleMode = false;
             this.map.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.map.LevelsKeepInMemory = 5;
-            this.map.Location = new System.Drawing.Point(6, 6);
-            this.map.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.map.Location = new System.Drawing.Point(12, 12);
+            this.map.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.map.MarkersEnabled = true;
             this.map.MaxZoom = 2;
             this.map.MinZoom = 2;
@@ -115,72 +114,64 @@
             this.map.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.map.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.map.ShowTileGridLines = false;
-            this.map.Size = new System.Drawing.Size(822, 573);
+            this.map.Size = new System.Drawing.Size(1704, 1332);
             this.map.TabIndex = 6;
             this.map.Zoom = 0D;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(846, 551);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(1750, 1284);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(140, 16);
+            this.label3.Size = new System.Drawing.Size(302, 32);
             this.label3.TabIndex = 7;
             this.label3.Text = "Weg für alle Stationen:";
             // 
             // LblDistance
             // 
             this.LblDistance.AutoSize = true;
-            this.LblDistance.Location = new System.Drawing.Point(1002, 551);
-            this.LblDistance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblDistance.Location = new System.Drawing.Point(2062, 1284);
+            this.LblDistance.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblDistance.Name = "LblDistance";
-            this.LblDistance.Size = new System.Drawing.Size(11, 16);
+            this.LblDistance.Size = new System.Drawing.Size(22, 32);
             this.LblDistance.TabIndex = 8;
             this.LblDistance.Text = "/";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Location = new System.Drawing.Point(0, 0);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 0;
             // 
             // label4
             // 
             this.label4.Location = new System.Drawing.Point(0, 0);
+            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 23);
+            this.label4.Size = new System.Drawing.Size(200, 45);
             this.label4.TabIndex = 1;
-            // 
-            // cbWegZiel
-            // 
-            this.cbWegZiel.Enabled = false;
-            this.cbWegZiel.FormattingEnabled = true;
-            this.cbWegZiel.Location = new System.Drawing.Point(849, 500);
-            this.cbWegZiel.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.cbWegZiel.Name = "cbWegZiel";
-            this.cbWegZiel.Size = new System.Drawing.Size(270, 24);
-            this.cbWegZiel.TabIndex = 10;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(847, 483);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(1750, 943);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(91, 16);
+            this.label5.Size = new System.Drawing.Size(194, 32);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Weg zum Ziel;";
+            this.label5.Text = "Weg zum Ziel:";
+            // 
+            // LB_StationsSequence
+            // 
+            this.LB_StationsSequence.FormattingEnabled = true;
+            this.LB_StationsSequence.ItemHeight = 31;
+            this.LB_StationsSequence.Location = new System.Drawing.Point(1754, 978);
+            this.LB_StationsSequence.Name = "LB_StationsSequence";
+            this.LB_StationsSequence.Size = new System.Drawing.Size(536, 283);
+            this.LB_StationsSequence.TabIndex = 11;
             // 
             // MainView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1168, 610);
-            this.Controls.Add(this.cbWegZiel);
+            this.ClientSize = new System.Drawing.Size(2336, 1355);
+            this.Controls.Add(this.LB_StationsSequence);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.LblDistance);
             this.Controls.Add(this.label3);
@@ -190,7 +181,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ClbStations);
             this.Controls.Add(this.BtnCalculateRoute);
-            this.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "MainView";
             this.Text = "Seidltourplaner";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainView_FormClosed);
@@ -210,10 +201,9 @@
         private GMap.NET.WindowsForms.GMapControl map;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label LblDistance;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cbWegZiel;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ListBox LB_StationsSequence;
     }
 }
 

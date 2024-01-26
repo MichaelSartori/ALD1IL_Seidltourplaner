@@ -75,7 +75,7 @@ namespace Seidltourplaner
                 StartStationChanged(this, indexStartVertex);
                 OnCalculateRouteRequested(this, e);
                 // Aktivieren des Drop-Down der Weg-Ziel Ausgabe
-                cbWegZiel.Enabled = true;
+                // LB_StationsSequence.Enabled = true;
             }
             else
             {
@@ -134,10 +134,11 @@ namespace Seidltourplaner
 
         private void UpdatePathTarget(List<string> stationsToUpdate)
         {
+            LB_StationsSequence.Items.Clear();
             int i = 1;
             foreach (var station in stationsToUpdate)
             {
-                cbWegZiel.Items.Add(i.ToString() + ". " + station);
+                LB_StationsSequence.Items.Add(i.ToString() + ". " + station);
                 i++;
             }
         }
