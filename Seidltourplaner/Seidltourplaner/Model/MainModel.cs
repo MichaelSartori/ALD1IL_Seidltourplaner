@@ -8,13 +8,20 @@ namespace Seidltourplaner.Model
 {
     internal class MainModel
     {
+        // Liste von allen angelegten Knoten
         public List<Vertex> m_allVertices { get; private set; }
 
+        /// <summary>
+        /// Standard Konstruktor
+        /// </summary>
         public MainModel()
         {
             m_allVertices = new List<Vertex>();
         }
 
+        /// <summary>
+        /// Standarddaten von Lokalen in Salzburg und Verknüpfungen zu den Nachbarlokalen werden angelegt. 
+        /// </summary>
         public void DefaultData()
         {
             // Anlegen der Knoten
@@ -38,104 +45,104 @@ namespace Seidltourplaner.Model
 
             // Nachbarknoten
             // Monkeys
-            monkeys.AddNeighborVertix(segabar);
-            monkeys.AddNeighborVertix(steinlechners);
-            monkeys.AddNeighborVertix(watzmann);
-            monkeys.AddNeighborVertix(omalleys);
-            monkeys.AddNeighborVertix(cityalm);
-            monkeys.AddNeighborVertix(citybeats);
+            monkeys.AddNeighborVertex(segabar);
+            monkeys.AddNeighborVertex(steinlechners);
+            monkeys.AddNeighborVertex(watzmann);
+            monkeys.AddNeighborVertex(omalleys);
+            monkeys.AddNeighborVertex(cityalm);
+            monkeys.AddNeighborVertex(citybeats);
 
             // Segabar
-            segabar.AddNeighborVertix(monkeys);
-            segabar.AddNeighborVertix(watzmann);
+            segabar.AddNeighborVertex(monkeys);
+            segabar.AddNeighborVertex(watzmann);
 
             // Steinlechner
-            steinlechners.AddNeighborVertix(urbankeller);
-            steinlechners.AddNeighborVertix(monkeys);
-            steinlechners.AddNeighborVertix(cityalm);
-            steinlechners.AddNeighborVertix(stiegelkeller);
+            steinlechners.AddNeighborVertex(urbankeller);
+            steinlechners.AddNeighborVertex(monkeys);
+            steinlechners.AddNeighborVertex(cityalm);
+            steinlechners.AddNeighborVertex(stiegelkeller);
 
             // Augustiner Bräu
-            augustinerbraeu.AddNeighborVertix(flip);
-            augustinerbraeu.AddNeighborVertix(stiegelbrauwelt);
-            augustinerbraeu.AddNeighborVertix(partymaus);
-            augustinerbraeu.AddNeighborVertix(weisse);
-            augustinerbraeu.AddNeighborVertix(schnaitlpub);
+            augustinerbraeu.AddNeighborVertex(flip);
+            augustinerbraeu.AddNeighborVertex(stiegelbrauwelt);
+            augustinerbraeu.AddNeighborVertex(partymaus);
+            augustinerbraeu.AddNeighborVertex(weisse);
+            augustinerbraeu.AddNeighborVertex(schnaitlpub);
 
             // Watzmann
-            watzmann.AddNeighborVertix(segabar);
-            watzmann.AddNeighborVertix(monkeys);
-            watzmann.AddNeighborVertix(omalleys);
-            watzmann.AddNeighborVertix(schnaitlpub);
-            watzmann.AddNeighborVertix(citybeats);
+            watzmann.AddNeighborVertex(segabar);
+            watzmann.AddNeighborVertex(monkeys);
+            watzmann.AddNeighborVertex(omalleys);
+            watzmann.AddNeighborVertex(schnaitlpub);
+            watzmann.AddNeighborVertex(citybeats);
 
             // Partymaus
-            partymaus.AddNeighborVertix(stiegelbrauwelt);
-            partymaus.AddNeighborVertix(augustinerbraeu);
-            partymaus.AddNeighborVertix(flip);
+            partymaus.AddNeighborVertex(stiegelbrauwelt);
+            partymaus.AddNeighborVertex(augustinerbraeu);
+            partymaus.AddNeighborVertex(flip);
 
             // Schnaitl Pub
-            schnaitlpub.AddNeighborVertix(weisse);
-            schnaitlpub.AddNeighborVertix(rockhouse);
-            schnaitlpub.AddNeighborVertix(watzmann);
-            schnaitlpub.AddNeighborVertix(omalleys);
-            schnaitlpub.AddNeighborVertix(citybeats);
-            schnaitlpub.AddNeighborVertix(augustinerbraeu);
+            schnaitlpub.AddNeighborVertex(weisse);
+            schnaitlpub.AddNeighborVertex(rockhouse);
+            schnaitlpub.AddNeighborVertex(watzmann);
+            schnaitlpub.AddNeighborVertex(omalleys);
+            schnaitlpub.AddNeighborVertex(citybeats);
+            schnaitlpub.AddNeighborVertex(augustinerbraeu);
 
             // Rockhouse
-            rockhouse.AddNeighborVertix(weisse);
-            rockhouse.AddNeighborVertix(schnaitlpub);
-            rockhouse.AddNeighborVertix(urbankeller);
+            rockhouse.AddNeighborVertex(weisse);
+            rockhouse.AddNeighborVertex(schnaitlpub);
+            rockhouse.AddNeighborVertex(urbankeller);
 
             // Weisse
-            weisse.AddNeighborVertix(rockhouse);
-            weisse.AddNeighborVertix(schnaitlpub);
-            weisse.AddNeighborVertix(augustinerbraeu);
+            weisse.AddNeighborVertex(rockhouse);
+            weisse.AddNeighborVertex(schnaitlpub);
+            weisse.AddNeighborVertex(augustinerbraeu);
 
             // Stieglkeller
-            stiegelkeller.AddNeighborVertix(stiegelbrauwelt);
-            stiegelkeller.AddNeighborVertix(steinlechners);
-            stiegelkeller.AddNeighborVertix(cityalm);
-            stiegelkeller.AddNeighborVertix(flip);
-            stiegelkeller.AddNeighborVertix(citybeats);
+            stiegelkeller.AddNeighborVertex(stiegelbrauwelt);
+            stiegelkeller.AddNeighborVertex(steinlechners);
+            stiegelkeller.AddNeighborVertex(cityalm);
+            stiegelkeller.AddNeighborVertex(flip);
+            stiegelkeller.AddNeighborVertex(citybeats);
 
             // Urbankeller
-            urbankeller.AddNeighborVertix(rockhouse);
-            urbankeller.AddNeighborVertix(steinlechners);
+            urbankeller.AddNeighborVertex(rockhouse);
+            urbankeller.AddNeighborVertex(steinlechners);
 
             // Cityalm
-            cityalm.AddNeighborVertix(omalleys);
-            cityalm.AddNeighborVertix(steinlechners);
-            cityalm.AddNeighborVertix(stiegelkeller);
-            cityalm.AddNeighborVertix(monkeys);
+            cityalm.AddNeighborVertex(omalleys);
+            cityalm.AddNeighborVertex(steinlechners);
+            cityalm.AddNeighborVertex(stiegelkeller);
+            cityalm.AddNeighborVertex(monkeys);
 
             // O'Mally's
-            omalleys.AddNeighborVertix(watzmann);
-            omalleys.AddNeighborVertix(monkeys);
-            omalleys.AddNeighborVertix(cityalm);
-            omalleys.AddNeighborVertix(citybeats);
-            omalleys.AddNeighborVertix(schnaitlpub);
+            omalleys.AddNeighborVertex(watzmann);
+            omalleys.AddNeighborVertex(monkeys);
+            omalleys.AddNeighborVertex(cityalm);
+            omalleys.AddNeighborVertex(citybeats);
+            omalleys.AddNeighborVertex(schnaitlpub);
 
             // Flip
-            flip.AddNeighborVertix(augustinerbraeu);
-            flip.AddNeighborVertix(stiegelbrauwelt);
-            flip.AddNeighborVertix(stiegelkeller);
-            flip.AddNeighborVertix(citybeats);
-            flip.AddNeighborVertix(partymaus);
+            flip.AddNeighborVertex(augustinerbraeu);
+            flip.AddNeighborVertex(stiegelbrauwelt);
+            flip.AddNeighborVertex(stiegelkeller);
+            flip.AddNeighborVertex(citybeats);
+            flip.AddNeighborVertex(partymaus);
 
             // Stiegl-Brauwelt
-            stiegelbrauwelt.AddNeighborVertix(partymaus);
-            stiegelbrauwelt.AddNeighborVertix(augustinerbraeu);
-            stiegelbrauwelt.AddNeighborVertix(flip);
-            stiegelbrauwelt.AddNeighborVertix(stiegelkeller);
+            stiegelbrauwelt.AddNeighborVertex(partymaus);
+            stiegelbrauwelt.AddNeighborVertex(augustinerbraeu);
+            stiegelbrauwelt.AddNeighborVertex(flip);
+            stiegelbrauwelt.AddNeighborVertex(stiegelkeller);
 
             // City Beats
-            citybeats.AddNeighborVertix(flip);
-            citybeats.AddNeighborVertix(omalleys);
-            citybeats.AddNeighborVertix(schnaitlpub);
-            citybeats.AddNeighborVertix(watzmann);
-            citybeats.AddNeighborVertix(monkeys);
-            citybeats.AddNeighborVertix(stiegelkeller);
+            citybeats.AddNeighborVertex(flip);
+            citybeats.AddNeighborVertex(omalleys);
+            citybeats.AddNeighborVertex(schnaitlpub);
+            citybeats.AddNeighborVertex(watzmann);
+            citybeats.AddNeighborVertex(monkeys);
+            citybeats.AddNeighborVertex(stiegelkeller);
 
             // Liste aller Knoten generieren
             m_allVertices.Add(monkeys);

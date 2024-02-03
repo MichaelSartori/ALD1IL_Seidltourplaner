@@ -15,83 +15,112 @@ namespace Seidltourplaner
 {
     internal class MainPresenter
     {
-        // member variables
-        private MainModel _model;
-        private MainView _mainView;
+        // Model und Presenter als Membervariablen
+        private MainModel m_model;
+        private MainView m_mainView;
 
+        // Eingezeichnete Markierungen der Lokale
         GMapOverlay markers = new GMapOverlay("markers");
+        // Eingezeichnete Routen zwischen den Lokalen
         GMapOverlay routes = new GMapOverlay("routes");
 
+        // Liste mit Indizes aller ausgewählten Lokalen
         List<int> m_indicesCheckedVertices;
+        // Index des Startlokals
         int m_indexStartStation;
 
+        /// <summary>
+        /// Standard Konstruktor
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="view"></param>
         public MainPresenter(MainModel model, MainView view)
         {
-            _model = model;
-            _mainView = view;
+            m_model = model;
+            m_mainView = view;
 
-            // connecting the subscribers to the events
+            // Die Subscribers mit den Events verknüpfen
             SetupLinks();
 
             m_indicesCheckedVertices = new List<int>();
-
         }
 
         /// <summary>
-        /// Starts the application
+        /// Die Applikation starten
         /// </summary>
         public void Run()
         {
-            // List of Stationnames for CheckedListBox in Mainview
+            // Liste der Lokalnamen für die CheckBox in der MainView
             List<string> clbStations = new List<string>();
 
             // Visualisierung aktualisieren
             GMapMarker gMapMarker;
-            foreach (var item in _model.m_allVertices)
+            foreach (var item in m_model.m_allVertices)
             {
+                // Die Namen aller Lokale hinzufügen
                 clbStations.Add(item.m_name);
+                // Die Standorte aller Lokale zu den Makierungen hinzufügen, die eingezeichnet werden sollten
                 gMapMarker = new GMarkerGoogle(item.m_coordinates, GMarkerGoogleType.red_dot);
                 gMapMarker.ToolTipText = item.m_name;
                 markers.Markers.Add(gMapMarker);
             }
 
-            _mainView.Show();
-            _mainView.InitView(markers, clbStations);
+            // MainView initialisieren und Applikation starten
+            m_mainView.Show();
+            m_mainView.InitView(markers, clbStations);
             Application.Run();
         }
 
         /// <summary>
-        /// connects the subscribers to the events
+        /// Die Subscribers mit den Events verknüpfen
         /// </summary>
         private void SetupLinks()
         {
-            // From GUI -> MainPresenter
-            _mainView.OnCalculateRouteRequested += OnCalculateRoute;
-            _mainView.CheckedStationsChanged += ChangeCheckedStations;
-            _mainView.StartStationChanged += ChangeStartStation;
+            // Von GUI -> MainPresenter
+            m_mainView.OnCalculateRouteRequested += OnCalculateRoute;
+            m_mainView.CheckedStationsChanged += ChangeCheckedStations;
+            m_mainView.StartStationChanged += ChangeStartStation;
 
             ////von Markus
             //_mainView.UpdatePathTarget += UpdatePathTarget;
 
         }
 
+        /// <summary>
+        /// Index des Startlokals aktualisieren
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="startStation"></param>
         private void ChangeStartStation(object sender, int startStation)
         {
             m_indexStartStation = startStation;
         }
 
+        /// <summary>
+        /// Indizes der ausgewählten Lokale aktualisieren
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="stations"></param>
         private void ChangeCheckedStations(object sender, List<int> stations)
         {
             m_indicesCheckedVertices = stations;
         }
 
+        /// <summary>
+        /// Die kürzeste Abfolge an Stationen berechnen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnCalculateRoute(object sender, EventArgs e)
         {
-            Vertex startVertex = _model.m_allVertices[m_indexStartStation];
+            // Startlokal als Knoten festlegen
+            Vertex startVertex = m_model.m_allVertices[m_indexStartStation];
+
+            // Alle eingezeichneten Routen löschen
             routes.Clear();
 
 
-            /// only for testing // ToDo Markus
+            /// only for testing
             int distance = 0;
             bool error = false;
 
@@ -108,13 +137,13 @@ namespace Seidltourplaner
 
             // Erstelle Liste mit allen Knoten die angehackt wurden
             List<Vertex> clickedVertices = new List<Vertex>();
-            for (int i = 0; i < m_indicesCheckedVertices.Count; i++) { clickedVertices.Add(_model.m_allVertices[m_indicesCheckedVertices[i]]); }
+            for (int i = 0; i < m_indicesCheckedVertices.Count; i++) { clickedVertices.Add(m_model.m_allVertices[m_indicesCheckedVertices[i]]); }
 
-            Dijkstra dijkstra = new Dijkstra(_model.m_allVertices);
+            Dijkstra dijkstra = new Dijkstra(m_model.m_allVertices);
             List<Vertex> path = null;
             List<string> pathToTarget = new List<string>();
             // Erster Startknoten
-            Vertex actualStartNode = _model.m_allVertices[m_indexStartStation];
+            Vertex actualStartNode = m_model.m_allVertices[m_indexStartStation];
             pathToTarget.Add(actualStartNode.m_name);
             int j = 1;
 
@@ -124,7 +153,7 @@ namespace Seidltourplaner
                 path = dijkstra.calculateNearestNode(actualStartNode, m_indicesCheckedVertices);
                 for (int i = 0; i < path.Count-1; i++)
                 {
-                    int indexOfPathElement = _model.m_allVertices.IndexOf(path[i]);
+                    int indexOfPathElement = m_model.m_allVertices.IndexOf(path[i]);
 
                     Vertex v1 = path[i];
                     Vertex v2 = path[i+1];
@@ -144,12 +173,13 @@ namespace Seidltourplaner
                 j++;
                 
                 clickedVertices.Remove(actualStartNode);
-                m_indicesCheckedVertices.Remove(_model.m_allVertices.IndexOf(actualStartNode));
+                m_indicesCheckedVertices.Remove(m_model.m_allVertices.IndexOf(actualStartNode));
                 actualStartNode = path[path.Count - 1];
                 pathToTarget.Add(actualStartNode.m_name);
             }      
 
-            _mainView.UpdateView(markers, routes, distance, pathToTarget, error);
+            // Markierungen, Routen und Reihenfolge der Lokale in der MainView aktualisieren
+            m_mainView.UpdateView(markers, routes, distance, pathToTarget, error);
         }
     }
 }

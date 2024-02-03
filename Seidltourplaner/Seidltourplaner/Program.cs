@@ -18,16 +18,18 @@ namespace Seidltourplaner
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            // MainModel intialisieren und Standarddaten (Lokale in Salzburg) generieren
             MainModel model = new MainModel();
             model.DefaultData();
 
+            // MainView initialisieren
             MainView mainView = new MainView();
 
+            // MainPresenter initialisieren
             MainPresenter mainPresenter = new MainPresenter(model, mainView);
 
+            // MainPresenter starten
             mainPresenter.Run();
-            
-            //Application.Run(mainView);
         }
     }
 }
