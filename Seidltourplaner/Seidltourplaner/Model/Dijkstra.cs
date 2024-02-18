@@ -29,35 +29,48 @@ namespace Seidltourplaner.Model
         public List<Vertex> calculateNearestNode(Vertex startNode, List<int> indicesOfClickedNodes)
         {
             // Instanzieren 
+            // Distanzen mit Anfangswerten initialisieren
             double[] distances = new double[m_allVertices.Count];
-            for (int i = 0; i < distances.Length; i++) { distances[i] = double.PositiveInfinity; }
+            for (int i = 0; i < distances.Length; i++) distances[i] = double.PositiveInfinity;
             distances[m_allVertices.IndexOf(startNode)] = 0;
 
+            // Eleternknoten initialisieren
             int[] parents = new int[m_allVertices.Count];
+            // Liste der bereits besuchten Knoten
             List<Vertex> visitedVertex = new List<Vertex>();
 
+            // Knoten, der gerade untersucht wird
             Vertex actualVertexToCheck = null;
 
             // Alle Knoten die gecheckt werden müssen, Kopie von m_allVertices
-            List<Vertex> VertexToCheck = new List<Vertex>();
+            List<Vertex> vertexToCheck = new List<Vertex>();
             foreach (Vertex v in m_allVertices)
             {
-                VertexToCheck.Add(v);
+                vertexToCheck.Add(v);
             }
                         
-            while (VertexToCheck.Count() > 0)
+            while (vertexToCheck.Count() > 0)
             {
                 // Finden des Knotens mit der kleinsten Distanz zum Startknoten
-                actualVertexToCheck = FindNextVertex(distances, VertexToCheck);
+                actualVertexToCheck = FindNextVertex(distances, vertexToCheck);
 
                 // Hinzufügen zur Liste der Besuchten Knoten
                 visitedVertex.Add(actualVertexToCheck);
-                VertexToCheck.Remove(actualVertexToCheck);
+                vertexToCheck.Remove(actualVertexToCheck);
 
+                // Index des aktuellen Knotens
+                int indexOfActualNode = m_allVertices.IndexOf(actualVertexToCheck);
+                // Index des Nachbarknoten, wird in folgender foreach jeweils neu zugewiesen
+                int indexOfNextNode;
+
+
+                // Prüfen jedes Nachbarknotens von actualVertexToCheck
                 foreach (Tuple<Vertex, MapRoute> v in actualVertexToCheck.m_neighborVertices)
                 {
-                    int indexOfNextNode = m_allVertices.IndexOf(v.Item1);
-                    int indexOfActualNode = m_allVertices.IndexOf(actualVertexToCheck);
+                    indexOfNextNode = m_allVertices.IndexOf(v.Item1);
+
+                    // Falls aktuell gespeicherte Distanz von Startpunkt zu Nachbarknoten v gößer als
+                    // Distanz von Startknoten zu actualVertexToCheck + Distanz von actualVertexToCheck zu Nachbarknoten v
                     if (distances[indexOfNextNode] > distances[indexOfActualNode] + v.Item2.Distance)
                     {
                         // Updaten
@@ -96,7 +109,12 @@ namespace Seidltourplaner.Model
         }
 
 
-        // Finde den nächsten Knoten für den Dijkstra
+        /// <summary>
+        /// Finde den nächsten Knoten für den Dijkstra
+        /// </summary>
+        /// <param name="distances">double Array mit den aktuellen Distanzen der Knoten zum Startpunkt</param>
+        /// <param name="VertexToCheck">Liste an Vertex die Kandidaten für den nächsten zu untersuchenden Knoten sind</param>
+        /// <returns>nächsten zu untersuchenden Knoten</returns>
         private Vertex FindNextVertex(double[] distances, List<Vertex> VertexToCheck)
         {
             double dist = double.PositiveInfinity;

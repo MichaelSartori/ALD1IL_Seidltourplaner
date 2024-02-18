@@ -61,6 +61,7 @@ namespace Seidltourplaner
                 clbStations.Add(item.m_name);
                 // Die Standorte aller Lokale zu den Makierungen hinzufügen, die eingezeichnet werden sollten
                 gMapMarker = new GMarkerGoogle(item.m_coordinates, GMarkerGoogleType.red_dot);
+                // Hoovert man über eine Markierung auf der Karte wird Lokalname angezeigt
                 gMapMarker.ToolTipText = item.m_name;
                 markers.Markers.Add(gMapMarker);
             }
@@ -137,10 +138,13 @@ namespace Seidltourplaner
 
             // Erstelle Liste mit allen Knoten die angehackt wurden
             List<Vertex> clickedVertices = new List<Vertex>();
-            for (int i = 0; i < m_indicesCheckedVertices.Count; i++) { clickedVertices.Add(m_model.m_allVertices[m_indicesCheckedVertices[i]]); }
+            for (int i = 0; i < m_indicesCheckedVertices.Count; i++) clickedVertices.Add(m_model.m_allVertices[m_indicesCheckedVertices[i]]);
 
+            // Dijkstra initialisieren
             Dijkstra dijkstra = new Dijkstra(m_model.m_allVertices);
-            List<Vertex> path = null;
+
+
+            List<Vertex> path;
             List<string> pathToTarget = new List<string>();
             // Erster Startknoten
             Vertex actualStartNode = m_model.m_allVertices[m_indexStartStation];
