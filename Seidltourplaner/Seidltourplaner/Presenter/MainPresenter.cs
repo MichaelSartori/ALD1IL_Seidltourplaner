@@ -83,10 +83,6 @@ namespace Seidltourplaner
             m_mainView.CheckedStationsChanged += ChangeCheckedStations;
             m_mainView.StartStationChanged += ChangeStartStation;
 
-            ////von Markus
-            //_mainView.UpdatePathTarget += UpdatePathTarget;
-
-
         }
 
         /// <summary>
@@ -127,6 +123,7 @@ namespace Seidltourplaner
 
             // Startwerte
             int distance = 0;
+            int fullDistance = 0;
             bool error = false;
 
             // Erstelle Liste mit allen Knoten die angehackt wurden
@@ -152,7 +149,8 @@ namespace Seidltourplaner
 
                 List<GMapRoute> generatedRoutes = dijkstra.GenerateRoutes(path, j, out distance);
                 foreach (GMapRoute route in generatedRoutes) routes.Routes.Add(route);            
-
+                // Gesamtdistanz aktualisieren
+                fullDistance = fullDistance + distance;
                 // Index der Teilrouten erhöhen
                 j++;
 
@@ -167,7 +165,7 @@ namespace Seidltourplaner
 
 
             // Markierungen, Routen und Reihenfolge der Lokale in der MainView aktualisieren
-            m_mainView.UpdateView(markers, routes, distance, pathToTarget, error);
+            m_mainView.UpdateView(markers, routes, fullDistance, pathToTarget, error);
         }
     }
 }

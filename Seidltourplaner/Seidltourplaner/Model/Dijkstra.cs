@@ -12,22 +12,26 @@ namespace Seidltourplaner.Model
 {
     internal class Dijkstra
     {
+        // Membervariablen
         GMapOverlay m_markers = new GMapOverlay("markers");
         GMapOverlay m_routes = new GMapOverlay("routes");
         List<Vertex> m_allVertices = null;
-        //Vertex m_startVertex = null;
-        //List<int> m_indexCheckedVertices = null;
         
-
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="allVertices">alle möglichen Knoten</param>
         public Dijkstra(List<Vertex> allVertices)
         {
             m_allVertices = allVertices;
-            //m_startVertex = m_allVertices[startVertex];
-            //m_indexCheckedVertices = indexCheckedVertices;
         }
 
-        public event EventHandler<List<int>> UpdatePathTarget;
-
+        /// <summary>
+        /// Funktion berechnet von einem Startknoten aus den nächsten gewählten Knoten
+        /// </summary>
+        /// <param name="startNode">Startknoten</param>
+        /// <param name="indicesOfClickedNodes">Liste der angehakten Knoten</param>
+        /// <returns>Liste der Knoten von Startknoten bis zu nächstem gewählten Knoten</returns>
         public List<Vertex> CalculateNearestNode(Vertex startNode, List<int> indicesOfClickedNodes)
         {
             // Instanzieren 
@@ -141,7 +145,13 @@ namespace Seidltourplaner.Model
             return nextVertex;
         }
 
-
+        /// <summary>
+        /// Funktion berechnet für einen Teilpfad des Lösungsweges die GMaps route
+        /// </summary>
+        /// <param name="path">Liste an Knoten die einen Teilpfad der Lösung repräsentiert</param>
+        /// <param name="j">Index, gibt an wie vielter Teilpfad</param>
+        /// <param name="dist">Out-Parameter, Distanz der Teilpfades des Lösungsweges</param>
+        /// <returns>Liste an GMapRoute, welche in Visualisierung eingezeichnet werden</returns>
         public List<GMapRoute> GenerateRoutes(List<Vertex> path, int j, out int dist)
         {
             List<GMapRoute> routes = new List<GMapRoute>();

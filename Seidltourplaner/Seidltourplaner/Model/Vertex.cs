@@ -20,7 +20,7 @@ namespace Seidltourplaner
         public List<Tuple<Vertex, MapRoute>> m_neighborVertices { get; set; }
 
         // Das nächste zu besuchende Lokal
-        public Vertex m_nextVertex { get; set; }
+        //public Vertex m_nextVertex { get; set; }
 
         /// <summary>
         /// Standard Konstruktor
