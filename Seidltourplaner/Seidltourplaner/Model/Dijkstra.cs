@@ -1,7 +1,9 @@
 ﻿using GMap.NET;
+using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +28,7 @@ namespace Seidltourplaner.Model
 
         public event EventHandler<List<int>> UpdatePathTarget;
 
-        public List<Vertex> calculateNearestNode(Vertex startNode, List<int> indicesOfClickedNodes)
+        public List<Vertex> CalculateNearestNode(Vertex startNode, List<int> indicesOfClickedNodes)
         {
             // Instanzieren 
             // Distanzen mit Anfangswerten initialisieren
@@ -44,25 +46,24 @@ namespace Seidltourplaner.Model
 
             // Alle Knoten die gecheckt werden müssen, Kopie von m_allVertices
             List<Vertex> vertexToCheck = new List<Vertex>();
-            foreach (Vertex v in m_allVertices)
-            {
-                vertexToCheck.Add(v);
-            }
-                        
+            foreach (Vertex v in m_allVertices) vertexToCheck.Add(v);
+            
+            // Solange es Knoten gibt, die noch nicht untersucht wurden
             while (vertexToCheck.Count() > 0)
             {
                 // Finden des Knotens mit der kleinsten Distanz zum Startknoten
+                // (im ersten Durchlauf: actualVertexToCheck = startNode)
                 actualVertexToCheck = FindNextVertex(distances, vertexToCheck);
 
                 // Hinzufügen zur Liste der Besuchten Knoten
                 visitedVertex.Add(actualVertexToCheck);
+                // Löschen aus Liste der zu untersuchenden Knoten
                 vertexToCheck.Remove(actualVertexToCheck);
 
                 // Index des aktuellen Knotens
                 int indexOfActualNode = m_allVertices.IndexOf(actualVertexToCheck);
                 // Index des Nachbarknoten, wird in folgender foreach jeweils neu zugewiesen
                 int indexOfNextNode;
-
 
                 // Prüfen jedes Nachbarknotens von actualVertexToCheck
                 foreach (Tuple<Vertex, MapRoute> v in actualVertexToCheck.m_neighborVertices)
@@ -73,12 +74,14 @@ namespace Seidltourplaner.Model
                     // Distanz von Startknoten zu actualVertexToCheck + Distanz von actualVertexToCheck zu Nachbarknoten v
                     if (distances[indexOfNextNode] > distances[indexOfActualNode] + v.Item2.Distance)
                     {
-                        // Updaten
+                        // Updaten der Distanzen und Elternknoten
                         distances[indexOfNextNode] = distances[indexOfActualNode] + v.Item2.Distance;
                         parents[indexOfNextNode] = indexOfActualNode;
                     }
                 } 
             }
+
+            // Kürzeste Distanzen zu allen anderen Knoten wurde ermittelt
 
             // Finden des nähesten Knotens, welcher ausgewählt wurde
             double dist = double.PositiveInfinity;
@@ -86,26 +89,32 @@ namespace Seidltourplaner.Model
 
             foreach (int i in indicesOfClickedNodes)
             {
+                // Wenn Knoten mit kleinerer Distanz gefunden wurde, der nicht der Startknoten ist
                 if (distances[i] < dist && m_allVertices.IndexOf(startNode) != i)
-                {
+                {   
+                    // dann ist dieser Knoten der aktuelle Kandidat für den nächsten Lösungsknoten
                     dist = distances[i];
                     nearestVertex = m_allVertices[i];
                 }
             }
 
+            // Pfad an Knoten von Startknoten zum nächsten Knoten aus gehackter Liste
             List<Vertex> path = new List<Vertex>();
             Vertex vertexToIterate = nearestVertex;
+            // mit Dijkstra berechneter Knoten = letzter Knoten in Liste
             path.Insert(0, vertexToIterate);
 
+            // Über Elternknoten den Pfad vervollständigen
+            // bis Startknoten rückwärts iterieren
             while (parents[m_allVertices.IndexOf(vertexToIterate)] != m_allVertices.IndexOf(startNode))
             {
                 vertexToIterate = m_allVertices[parents[m_allVertices.IndexOf(vertexToIterate)]];
                 path.Insert(0, vertexToIterate);
             }
+            // Startknoten = erster Knoten in Liste
             path.Insert(0, startNode);
 
             return path;
-
         }
 
 
@@ -130,6 +139,39 @@ namespace Seidltourplaner.Model
             }
             
             return nextVertex;
+        }
+
+
+        public List<GMapRoute> GenerateRoutes(List<Vertex> path, int j, out int dist)
+        {
+            List<GMapRoute> routes = new List<GMapRoute>();
+            dist = 0;
+
+            for (int i = 0; i < path.Count - 1; i++)
+            {
+                // aktueller Knoten im Pfad
+                Vertex v1 = path[i];
+                // nächter Knoten in Pfad
+                Vertex v2 = path[i + 1];
+                int k;
+
+                // Finden des Indizes k, wo v1.m_neighborVertices[k].Item1 == v2
+                for (k = 0; k < v1.m_neighborVertices.Count; k++)
+                {
+                    if (v1.m_neighborVertices[k].Item1 == v2) break;
+                }
+
+                // Teilroute zwischen zwei angehackten Knoten
+                // Bsp. Teilroute zwischen Startknoten und kürzest entferntem Knoten aus der angehackten Liste
+                MapRoute calculatedRoute = v1.m_neighborVertices[k].Item2;
+                GMapRoute gMapRoute = new GMapRoute(calculatedRoute.Points, j.ToString());
+                // Gesamtdistanz aktualisieren.
+                dist = dist + Convert.ToInt32(calculatedRoute.Distance * 1000);
+                // Teilroute hinzufügen 
+                routes.Add(gMapRoute);
+            }
+
+            return routes;
         }
     }
 }

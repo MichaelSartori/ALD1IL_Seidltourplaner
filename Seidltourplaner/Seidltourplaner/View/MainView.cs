@@ -71,6 +71,7 @@ namespace Seidltourplaner
                 for (int i = 0; i < numberCheckedIndices; i++)
                 {
                     indexCheckedVertices.Add(ClbStations.CheckedIndices[i]);
+                    // Den Startknoten herausfinden
                     if (ClbStations.CheckedItems[i].ToString() == CbStart.Text)
                     {
                         indexStartVertex = ClbStations.CheckedIndices[i];
@@ -185,6 +186,7 @@ namespace Seidltourplaner
             // Liste mit den vorherigen Stationen löschen und neu anlegen
             LB_StationsSequence.Items.Clear();
             int i = 1;
+            // Jedes Element des Lösungspfades in Listbox ausgeben
             foreach (var station in stationsToUpdate)
             {
                 LB_StationsSequence.Items.Add(i.ToString() + ". " + station);
